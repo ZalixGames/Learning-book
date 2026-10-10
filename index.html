@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kids Learning Pakistan 🇵🇰 - 100 مکس لیولز</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Noto+Nastaliq+Urdu:wght@400;700&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #047857;
+      --primary-light: #10b981;
+      --secondary: #f59e0b;
+      --danger: #ef4444;
+      --blue: #2563eb;
+      --purple: #7c3aed;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', 'Noto Nastaliq Urdu', sans-serif;
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 50%, #6ee7b7 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      color: var(--text);
+    }
+
+    #app-box {
+      width: 100%;
+      max-width: 530px;
+      background: var(--card-bg);
+      border-radius: 28px;
+      box-shadow: 0 20px 45px rgba(4, 120, 87, 0.28);
+      border: 4px solid #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 94vh;
+      position: relative;
+    }
+
+    /* Universal Header */
+    .top-header {
+      background: linear-gradient(90deg, #047857, #10b981);
+      color: white;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-title {
+      font-family: 'Fredoka One', 'Noto Nastaliq Urdu';
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Live Scores Dropdown */
+    .dropdown-bar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .kids-select {
+      background: #ffffff;
+      color: #065f46;
+      border: 2px solid #34d399;
+      border-radius: 12px;
+      padding: 6px 12px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      font-family: 'Nunito', 'Noto Nastaliq Urdu', sans-serif;
+      width: 100%;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Screens */
+    .screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      animation: popIn 0.25s ease-out;
+    }
+    .screen.active { display: flex; }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Buttons */
+    .kid-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.25rem;
+      font-weight: 900;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+      transition: all 0.15s;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .kid-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+    }
+    .btn-green { background: #10b981; color: white; border-bottom: 4px solid #047857; }
+    .btn-blue { background: #3b82f6; color: white; border-bottom: 4px solid #1d4ed8; }
+    .btn-orange { background: #f97316; color: white; border-bottom: 4px solid #c2410c; }
+    .btn-purple { background: #8b5cf6; color: white; border-bottom: 4px solid #6d28d9; }
+
+    /* Active Player Info Card */
+    .player-banner {
+      width: 100%;
+      background: #eff6ff;
+      border: 3px solid #60a5fa;
+      border-radius: 18px;
+      padding: 8px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .player-title {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #1e40af;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Remaining Level Marks Tracker */
+    .marks-meter {
+      width: 100%;
+      background: #fef3c7;
+      border: 2px solid #f59e0b;
+      padding: 6px 12px;
+      border-radius: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 900;
+      font-size: 0.95rem;
+      color: #92400e;
+      margin-bottom: 10px;
+    }
+    .marks-val {
+      font-size: 1.2rem;
+      color: #b45309;
+      font-weight: 900;
+    }
+
+    .voice-btn {
+      background: #ffedd5;
+      border: 2px solid #f97316;
+      color: #9a3412;
+      padding: 7px 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    /* Gameplay Interactive Blocks */
+    /* Mode 1: Match Pairs */
+    .match-wrap {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 10px;
+    }
+    .match-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .match-card {
+      background: #f8fafc;
+      border: 3px solid #94a3b8;
+      border-radius: 16px;
+      padding: 10px 6px;
+      font-size: 1.15rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #64748b;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .match-card.selected {
+      background: #fef08a !important;
+      border-color: #ca8a04 !important;
+      transform: scale(1.03);
+    }
+    .match-card.matched {
+      background: #86efac !important;
+      border-color: #16a34a !important;
+      color: #065f46 !important;
+      cursor: default;
+      box-shadow: none;
+    }
+
+    /* Mode 2: Blank Fill */
+    .blank-box {
+      font-size: 2.1rem;
+      letter-spacing: 5px;
+      background: #f1f5f9;
+      padding: 12px 18px;
+      border-radius: 18px;
+      border: 3px dashed #3b82f6;
+      margin-bottom: 14px;
+      font-weight: 900;
+    }
+    .tiles-box {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .tile-btn {
+      min-width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: #eff6ff;
+      border: 3px solid #60a5fa;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #1d4ed8;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #3b82f6;
+    }
+    .tile-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #3b82f6;
+    }
+
+    /* Mode 3: Spot Matrix */
+    .spot-matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+    }
+    .spot-item {
+      aspect-ratio: 1;
+      background: #fff;
+      border: 3px solid #cbd5e1;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #94a3b8;
+    }
+
+    /* Mode 4: Quiz */
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+    }
+    .quiz-card {
+      padding: 12px 8px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      border-radius: 16px;
+      border: 3px solid #cbd5e1;
+      background: #f8fafc;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #94a3b8;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Modals & Popups */
+    .popup-modal {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 100;
+    }
+    .popup-modal.show { display: flex; }
+    .popup-card {
+      background: white;
+      border-radius: 24px;
+      padding: 22px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      animation: pop 0.25s ease-out;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.8); }
+      100% { transform: scale(1); }
+    }
+
+    /* Floating Penalty Toast */
+    .score-toast {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: white;
+      z-index: 99;
+      pointer-events: none;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .score-toast.penalty {
+      background: #ef4444;
+      box-shadow: 0 10px 25px rgba(239, 68, 68, 0.5);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    .score-toast.reward {
+      background: #10b981;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.5);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    #confetti-canvas {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 95;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app-box">
+  <canvas id="confetti-canvas"></canvas>
+  <div id="score-toast" class="score-toast">-2 نمبر</div>
+
+  <!-- Header with Live Scores for all 5 Students -->
+  <div class="top-header">
+    <div class="top-row">
+      <div class="brand-title">
+        <span>🇵🇰</span> کڈز لرننگ پاکستان
+      </div>
+      <div style="font-size: 0.85rem; font-weight: 800; background: rgba(0,0,0,0.25); padding: 4px 8px; border-radius: 14px;">
+        100 لیولز | صحیح: 10 | غلطی: -2
+      </div>
+    </div>
+
+    <div class="dropdown-bar">
+      <span style="font-size: 1.2rem;">🏆</span>
+      <select id="kidsSelectDropdown" class="kids-select" onchange="onDropdownSelect(this.value)">
+        <!-- Populated dynamically with all 5 students' live scores -->
+      </select>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: HOME (DIRECT PLAY) -->
+  <div id="screen-home" class="screen active">
+    <div style="font-size: 3.5rem; margin-bottom: 4px;">🇵🇰 🎒 📐 🧪</div>
+    <h1 style="font-size: 1.7rem; color: var(--primary); font-family: 'Fredoka One', 'Noto Nastaliq Urdu';">
+      100 مکس لیولز چیلنج!
+    </h1>
+    <p style="color: #64748b; font-weight: 700; margin: 4px 0 16px 0; font-size: 1rem;">
+      مصطفیٰ (1)، مجتبیٰ (2)، محدث (4)، عباس (5) اور احتشام (10)
+    </p>
+
+    <!-- BIG DIRECT PLAY BUTTON -->
+    <button class="kid-btn btn-green" style="font-size: 1.4rem; padding: 16px;" onclick="startDirectPlay()">
+      ▶ ابھی کھیلیں (Direct Play)
+    </button>
+
+    <button class="kid-btn btn-blue" onclick="showScreen('screen-levels-map')">
+      🗺 100 لیولز کا نقشہ (Levels Map)
+    </button>
+
+    <button class="kid-btn btn-purple" onclick="showScreen('screen-scoreboard')">
+      📊 پانچوں طلبہ کا سکور کارڈ (Scoreboard)
+    </button>
+  </div>
+
+  <!-- SCREEN 2: GAMEPLAY ARENA -->
+  <div id="screen-game" class="screen">
+    <!-- Active Turn Card -->
+    <div class="player-banner">
+      <div class="player-title" id="active-player-tag">
+        <span>👦🏻</span> مصطفیٰ (کلاس 1)
+      </div>
+      <div style="font-weight: 900; color: #d97706;" id="level-display-tag">
+        لیول 1 / 100
+      </div>
+    </div>
+
+    <!-- Remaining Level Marks Meter -->
+    <div class="marks-meter">
+      <span>اس سوال کے باقی نمبر:</span>
+      <span class="marks-val" id="level-pool-tag">10 / 10 🪙</span>
+    </div>
+
+    <div style="width: 100%; margin-bottom: 6px;">
+      <div id="q-emoji-display" style="font-size: 3.2rem;">🍎</div>
+      <div style="display:inline-block; background:#e0f2fe; color:#0369a1; padding:3px 12px; border-radius:12px; font-weight:800; font-size:0.85rem; margin-bottom:4px;" id="q-subject-tag">
+        مضمون: ریاضی
+      </div>
+      <h2 id="q-text-display" style="font-size: 1.3rem; color: #1e293b; margin: 4px 0 8px 0; font-weight: 900; line-height: 1.4;">
+        سوال
+      </h2>
+
+      <!-- Voice speaker button (Speaks ONLY question & explanation, NO names) -->
+      <button class="voice-btn" onclick="speakCurrentQuestion()">
+        🔊 سنیں (Listen Voice)
+      </button>
+    </div>
+
+    <!-- Dynamic Slot for Game Modes -->
+    <div id="game-dynamic-slot" style="width: 100%;"></div>
+  </div>
+
+  <!-- SCREEN 3: 100 LEVELS MAP -->
+  <div id="screen-levels-map" class="screen">
+    <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+      <button class="voice-btn" style="margin:0; padding:6px 14px;" onclick="showScreen('screen-home')">⬅ ہوم</button>
+      <h3 style="color: var(--primary); font-size: 1.2rem;">100 مکس لیولز کا نقشہ</h3>
+      <span style="font-size: 1.2rem;">🇵🇰</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-height: 54vh; overflow-y: auto; width: 100%; padding: 4px;" id="levels-map-grid">
+      <!-- 100 Levels generated via JS -->
+    </div>
+  </div>
+
+  <!-- SCREEN 4: SCOREBOARD -->
+  <div id="screen-scoreboard" class="screen">
+    <h2 style="font-size: 1.6rem; color: var(--primary); margin-bottom: 4px;">سکور بورڈ اور نتائج 🏆</h2>
+    <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 14px;">پانچوں طلبہ کے لائیو حاصل کردہ نمبرز</p>
+
+    <div id="scoreboard-list" style="width: 100%; display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+      <!-- Populated via JS -->
+    </div>
+
+    <button class="kid-btn btn-green" onclick="showScreen('screen-home')">
+      ⬅ ہوم پر واپس جائیں
+    </button>
+  </div>
+
+  <!-- MODAL: SUCCESS / FAILED -->
+  <div class="popup-modal" id="feedback-modal">
+    <div class="popup-card">
+      <div id="modal-icon" style="font-size: 4rem; margin-bottom: 4px;">🌟</div>
+      <h3 id="modal-title" style="font-size: 1.6rem; font-weight: 900; margin-bottom: 4px; color: var(--primary);">
+        شاباش!
+      </h3>
+      <div id="modal-msg" style="color: #475569; font-size: 1.1rem; margin-bottom: 16px; font-weight: 700;">
+        آپ کو ملے ہیں 10 نمبر!
+      </div>
+      <button class="kid-btn btn-green" id="modal-action-btn" onclick="modalNextAction()">
+        اگلا لیول ➡
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ==========================================================================
+   Kids Learning Pakistan: 5 Students Engine with 100 Unique Curriculum Levels
+   ========================================================================== */
+
+// Offline Web Audio Synthesizer
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function playSound(type) {
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  const now = audioCtx.currentTime;
+
+  if (type === 'tap') {
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(450, now);
+    osc.frequency.exponentialRampToValueAtTime(750, now + 0.08);
+    gain.gain.setValueAtTime(0.15, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+    osc.start(now); osc.stop(now + 0.08);
+  } else if (type === 'gain') {
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(523.25, now);
+    osc.frequency.setValueAtTime(659.25, now + 0.1);
+    osc.frequency.setValueAtTime(783.99, now + 0.2);
+    gain.gain.setValueAtTime(0.25, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+    osc.start(now); osc.stop(now + 0.4);
+  } else if (type === 'loss') {
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(260, now);
+    osc.frequency.setValueAtTime(170, now + 0.15);
+    gain.gain.setValueAtTime(0.25, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+    osc.start(now); osc.stop(now + 0.35);
+  } else if (type === 'fail') {
+    [220, 196, 174, 146].forEach((f, i) => {
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.connect(g); g.connect(audioCtx.destination);
+      o.type = 'sawtooth'; o.frequency.value = f;
+      g.gain.setValueAtTime(0.25, now + i*0.12);
+      g.gain.exponentialRampToValueAtTime(0.001, now + i*0.12 + 0.3);
+      o.start(now + i*0.12); o.stop(now + i*0.12 + 0.3);
+    });
+  } else if (type === 'fanfare') {
+    [523, 659, 783, 1046].forEach((f, i) => {
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.connect(g); g.connect(audioCtx.destination);
+      o.type = 'triangle'; o.frequency.value = f;
+      g.gain.setValueAtTime(0.2, now + i*0.1);
+      g.gain.exponentialRampToValueAtTime(0.001, now + i*0.1 + 0.35);
+      o.start(now + i*0.1); o.stop(now + i*0.1 + 0.35);
+    });
+  }
+}
+
+// Android / Mobile Speech Synthesizer: SPEAKS ONLY QUESTION AND EXPLANATION (NO NAMES)
+let voicesList = [];
+function initVoices() {
+  if (!('speechSynthesis' in window)) return;
+  voicesList = window.speechSynthesis.getVoices();
+}
+initVoices();
+if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
+  window.speechSynthesis.onvoiceschanged = initVoices;
+}
+
+function speakCleanVoice(text, lang = 'ur') {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.resume();
+
+  // Strip emojis and punctuation marks
+  const clean = text.replace(/[\u{1F300}-\u{1FAFF}]/gu, '').replace(/[،۔!؟]/g, ' ');
+  const utter = new SpeechSynthesisUtterance(clean);
+  utter.rate = 0.88;
+  utter.pitch = 1.05;
+
+  if (voicesList.length === 0) voicesList = window.speechSynthesis.getVoices();
+
+  if (lang === 'ur') {
+    const urVoice = voicesList.find(v => v.lang.startsWith('ur')) ||
+                    voicesList.find(v => v.lang.startsWith('hi'));
+    if (urVoice) utter.voice = urVoice;
+    utter.lang = urVoice ? urVoice.lang : 'ur-PK';
+  } else {
+    const enVoice = voicesList.find(v => v.lang.startsWith('en'));
+    if (enVoice) utter.voice = enVoice;
+    utter.lang = 'en-US';
+  }
+  window.speechSynthesis.speak(utter);
+}
+
+/* ==========================================================================
+   Five Students Profile & State Store
+   ========================================================================== */
+
+const defaultState = {
+  activeLevel: 1,
+  highestUnlockedLevel: 1,
+  kids: {
+    mustafa:  { id: 'mustafa',  name: 'مصطفیٰ',  grade: 'کلاس 1',  avatar: '👦🏻', score: 0 },
+    mujtaba:  { id: 'mujtaba',  name: 'مجتبیٰ',  grade: 'کلاس 2',  avatar: '👦🏽', score: 0 },
+    muhaddis: { id: 'muhaddis', name: 'محدث',   grade: 'کلاس 4',  avatar: '🧑🏻', score: 0 },
+    abbas:    { id: 'abbas',    name: 'عباس',   grade: 'کلاس 5',  avatar: '🧑🏽', score: 0 },
+    ehtisham: { id: 'ehtisham', name: 'احتشام', grade: 'کلاس 10', avatar: '👨🏻', score: 0 }
+  }
+};
+
+let gameState = (() => {
+  try {
+    const saved = localStorage.getItem('klp_100_levels_v1');
+    return saved ? JSON.parse(saved) : defaultState;
+  } catch(e) {
+    return defaultState;
+  }
+})();
+
+function saveState() {
+  localStorage.setItem('klp_100_levels_v1', JSON.stringify(gameState));
+  updateDropdownScores();
+}
+
+function updateDropdownScores() {
+  const sel = document.getElementById('kidsSelectDropdown');
+  sel.innerHTML = '';
+  ['mustafa', 'mujtaba', 'muhaddis', 'abbas', 'ehtisham'].forEach(k => {
+    const kid = gameState.kids[k];
+    const opt = document.createElement('option');
+    opt.value = kid.id;
+    opt.textContent = `${kid.name} (${kid.grade}) — 🪙 ${kid.score} نمبر`;
+    sel.appendChild(opt);
+  });
+}
+
+function onDropdownSelect(kidId) {
+  playSound('tap');
+  const kid = gameState.kids[kidId];
+  speakCleanVoice(`اس وقت کل ${kid.score} نمبر حاصل ہو چکے ہیں۔`, 'ur');
+}
+
+/* ==========================================================================
+   Complete 100 Unique Curriculum Levels (No Repetitions!)
+   Order: Mustafa (1) -> Mujtaba (2) -> Muhaddis (4) -> Abbas (5) -> Ehtisham (10)
+   ========================================================================== */
+
+const raw100Levels = [
+  // 1 to 5
+  { lvl: 1, kid: 'mustafa', sub: 'ریاضی', mode: 'quiz', pic: '➕', prompt: '3 اور 2 مل کر کتنے بنتے ہیں؟', options: ['پانچ (5)', 'چار (4)', 'چھ (6)', 'تین (3)'], a: 0, exp: '3 + 2 برابر ہوتا ہے 5 کے۔' },
+  { lvl: 2, kid: 'mujtaba', sub: 'ریاضی', mode: 'quiz', pic: '➖', prompt: '15 میں سے 6 تفریق کریں تو کیا باقی بچے گا؟', options: ['9', '8', '10', '11'], a: 0, exp: '15 منفی 6 برابر ہے 9۔' },
+  { lvl: 3, kid: 'muhaddis', sub: 'ریاضی', mode: 'quiz', pic: '✖️', prompt: '7 کو 8 سے ضرب دیں تو کیا حاصل ضرب ہوگا؟', options: ['56', '54', '48', '64'], a: 0, exp: '7 ضرب 8 برابر ہے 56۔' },
+  { lvl: 4, kid: 'abbas', sub: 'ریاضی', mode: 'quiz', pic: '💯', prompt: '200 کا 15 فیصد کتنا ہوگا؟', options: ['30', '20', '40', '15'], a: 0, exp: '200 کا 15% برابر ہے 30۔' },
+  { lvl: 5, kid: 'ehtisham', sub: 'فزکس', mode: 'quiz', pic: '⚡', prompt: 'برقی رو (Electric Current) کی بنیادی اکائی کیا ہے؟', options: ['ایمپیئر (Ampere)', 'وولٹ (Volt)', 'اوہم (Ohm)', 'واٹ (Watt)'], a: 0, exp: 'کرنٹ کی ایس آئی اکائی ایمپیئر ہے۔' },
+
+  // 6 to 10
+  { lvl: 6, kid: 'mustafa', sub: 'English', mode: 'blank', pic: '🐱', prompt: 'Complete the word: C [ _ ] T', displayWord: 'C _ T', blankChar: 'A', options: ['A', 'O', 'I', 'U'], exp: 'C - A - T spells Cat.' },
+  { lvl: 7, kid: 'mujtaba', sub: 'English', mode: 'match', pic: '🐶 🐱 🦆', prompt: 'Match animals with their young ones!', pairs: [{left: '🐶 Dog', right: 'Puppy'}, {left: '🐱 Cat', right: 'Kitten'}, {left: '🦆 Duck', right: 'Duckling'}], exp: 'Dog puppy, Cat kitten, Duck duckling.' },
+  { lvl: 8, kid: 'muhaddis', sub: 'English', mode: 'quiz', pic: '🏃', prompt: 'Choose the Verb in this sentence: "Birds fly in the sky."', options: ['fly', 'birds', 'sky', 'in'], a: 0, exp: 'Fly is the action word (Verb).' },
+  { lvl: 9, kid: 'abbas', sub: 'English', mode: 'quiz', pic: '👶', prompt: 'What is the plural of "Child"?', options: ['Children', 'Childs', 'Childrens', 'Childes'], a: 0, exp: 'The plural of Child is Children.' },
+  { lvl: 10, kid: 'ehtisham', sub: 'ریاضی', mode: 'quiz', pic: '📐', prompt: 'دو درجی مساوات (Quadratic Equation) کی معیاری شکل کیا ہے؟', options: ['ax² + bx + c = 0', 'ax + b = 0', 'a² + b² = c²', 'x/a + y/b = 1'], a: 0, exp: 'معیاری دو درجی مساوات ax² + bx + c = 0 ہوتی ہے۔' },
+
+  // 11 to 15
+  { lvl: 11, kid: 'mustafa', sub: 'اردو', mode: 'match', pic: '🍎 🐐 🪁', prompt: 'تصویروں کو ان کے پہلے حرف سے جوڑیں!', pairs: [{left: '🍎 سیب', right: 'س'}, {left: '🐐 بکری', right: 'ب'}, {left: '🪁 پتنگ', right: 'پ'}], exp: 'س سے سیب، ب سے بکری، اور پ سے پتنگ۔' },
+  { lvl: 12, kid: 'mujtaba', sub: 'اردو', mode: 'match', pic: '☀️ ❄️ 🌙', prompt: 'الفاظ کو ان کے متضاد سے ملائیں!', pairs: [{left: 'گرم', right: 'ٹھنڈا'}, {left: 'دن', right: 'رات'}, {left: 'بڑا', right: 'چھوٹا'}], exp: 'گرم کا الٹ ٹھنڈا اور دن کا الٹ رات ہے۔' },
+  { lvl: 13, kid: 'muhaddis', sub: 'اردو', mode: 'quiz', pic: '📖', prompt: 'کسی شخص، جگہ یا چیز کے نام کو کیا کہتے ہیں؟', options: ['اسم (Noun)', 'فعل (Verb)', 'حرف', 'صفت'], a: 0, exp: 'کسی بھی نام کو اسم کہا جاتا ہے۔' },
+  { lvl: 14, kid: 'abbas', sub: 'اردو', mode: 'blank', pic: '🤝', prompt: 'کہاوت مکمل کریں: اتفاق میں [ _ ] ہے۔', displayWord: 'ب _ ک ت', blankChar: 'ر', options: ['ر', 'ل', 'س', 'ن'], exp: 'اتفاق میں برکت ہے۔' },
+  { lvl: 15, kid: 'ehtisham', sub: 'فزکس', mode: 'quiz', pic: '💡', prompt: 'اوہم کا قانون (Ohm\'s Law) کیا بیان کرتا ہے؟', options: ['V = IR', 'F = ma', 'P = VI', 'E = mc²'], a: 0, exp: 'اوہم کے قانون کا کلیہ V = IR ہے۔' },
+
+  // 16 to 20
+  { lvl: 16, kid: 'mustafa', sub: 'ریاضی', mode: 'spot', pic: '⚪', prompt: 'دائرے (Circle) کی شکل کون سی ہے؟', correctIndex: 0, choices: [{emoji: '⚪', title: 'دائرہ'}, {emoji: '⬛', title: 'مربع'}, {emoji: '🔺', title: 'مثلث'}, {emoji: '⭐', title: 'ستارہ'}], exp: 'گول شکل کو دائرہ کہتے ہیں۔' },
+  { lvl: 17, kid: 'mujtaba', sub: 'ریاضی', mode: 'quiz', pic: '🔢', prompt: '4 کا پہاڑا: 4 ضرب 6 کتنا ہوگا؟', options: ['24', '20', '28', '18'], a: 0, exp: 'چار چھکے چوبیس (24)۔' },
+  { lvl: 18, kid: 'muhaddis', sub: 'ریاضی', mode: 'quiz', pic: '➗', prompt: '72 کو 9 پر تقسیم کریں تو کیا جواب آئے گا؟', options: ['8', '7', '9', '6'], a: 0, exp: '72 تقسیم 9 برابر ہے 8۔' },
+  { lvl: 19, kid: 'abbas', sub: 'ریاضی', mode: 'quiz', pic: '📐', prompt: 'ایک مثلث (Triangle) کے تینوں اندرونی زاویوں کا مجموعہ کتنا ہوتا ہے؟', options: ['180 ڈگری', '360 ڈگری', '90 ڈگری', '270 ڈگری'], a: 0, exp: 'مثلث کے تمام زاویوں کا مجموعہ 180 ڈگری ہوتا ہے۔' },
+  { lvl: 20, kid: 'ehtisham', sub: 'ریاضی', mode: 'quiz', pic: '📐', prompt: 'سائن 90 ڈگری (sin 90°) کی قیمت کیا ہوتی ہے؟', options: ['1', '0', '1/2', 'نا معلوم'], a: 0, exp: 'sin 90° کی قیمت 1 ہوتی ہے۔' },
+
+  // 21 to 25
+  { lvl: 21, kid: 'mustafa', sub: 'English', mode: 'quiz', pic: '🥛', prompt: 'What color is fresh milk?', options: ['White', 'Black', 'Blue', 'Green'], a: 0, exp: 'Milk is White in color.' },
+  { lvl: 22, kid: 'mujtaba', sub: 'English', mode: 'quiz', pic: '🌞', prompt: 'What is the opposite of "Hot"?', options: ['Cold', 'Warm', 'Bright', 'Fast'], a: 0, exp: 'Cold is the opposite of Hot.' },
+  { lvl: 23, kid: 'muhaddis', sub: 'English', mode: 'blank', pic: '⏱️', prompt: 'Past tense of "Eat": A [ _ ] E', displayWord: 'A _ E', blankChar: 'T', options: ['T', 'S', 'R', 'N'], exp: 'A - T - E spells Ate.' },
+  { lvl: 24, kid: 'abbas', sub: 'English', mode: 'quiz', pic: '🔗', prompt: 'Which word is a Conjunction in: "He is poor but honest"?', options: ['but', 'poor', 'honest', 'is'], a: 0, exp: 'The word "but" connects the ideas.' },
+  { lvl: 25, kid: 'ehtisham', sub: 'English', mode: 'quiz', pic: '✍️', prompt: 'Identify the Passive Voice: "The letter was written by Ali."', options: ['Passive Voice', 'Active Voice', 'Direct Speech', 'Imperative'], a: 0, exp: 'This sentence is in Passive Voice.' },
+
+  // 26 to 30
+  { lvl: 26, kid: 'mustafa', sub: 'اردو', mode: 'quiz', pic: '🥭', prompt: 'پھلوں کا بادشاہ کس پھل کو کہا جاتا ہے؟', options: ['آم', 'سیب', 'کیلا', 'مالٹا'], a: 0, exp: 'آم کو پھلوں کا بادشاہ کہا جاتا ہے۔' },
+  { lvl: 27, kid: 'mujtaba', sub: 'اردو', mode: 'match', pic: '👦 📚 ✏️', prompt: 'واحد الفاظ کو ان کی جمع سے ملائیں!', pairs: [{left: 'لڑکا', right: 'لڑکے'}, {left: 'کتاب', right: 'کتابیں'}, {left: 'تارا', right: 'تارے'}], exp: 'لڑکا سے لڑکے، کتاب سے کتابیں، تارا سے تارے۔' },
+  { lvl: 28, kid: 'muhaddis', sub: 'اردو', mode: 'quiz', pic: '💧', prompt: 'سائنس: مادہ (Matter) کی بنیادی حالتیں کتنی ہیں؟', options: ['تین (ٹھوس، مائع، گیس)', 'دو', 'چار', 'پانچ'], a: 0, exp: 'مادے کی 3 بنیادی حالتیں ٹھوس، مائع اور گیس ہیں۔' },
+  { lvl: 29, kid: 'abbas', sub: 'اردو', mode: 'match', pic: '🕌 🏛️ 🏢', prompt: 'پاکستان کے صوبوں کو ان کے دارالحکومت سے ملائیں!', pairs: [{left: 'پنجاب', right: 'لاہور'}, {left: 'سندھ', right: 'کراچی'}, {left: 'بلوچستان', right: 'کوئٹہ'}], exp: 'پنجاب کا لاہور، سندھ کا کراچی، بلوچستان کا کوئٹہ۔' },
+  { lvl: 30, kid: 'ehtisham', sub: 'اردو', mode: 'quiz', pic: '📜', prompt: 'شعر میں کسی چیز کو دوسری چیز جیسا قرار دینا کیا کہلاتا ہے؟', options: ['تشبیہ', 'استعارہ', 'قافیہ', 'ردیف'], a: 0, exp: 'کسی وصف کی بنا پر مشابہ قرار دینا تشبیہ کہلاتا ہے۔' },
+
+  // 31 to 35
+  { lvl: 31, kid: 'mustafa', sub: 'ریاضی', mode: 'quiz', pic: '🔟', prompt: 'ہندسہ 9 کے بعد کون سا ہندسہ آتا ہے؟', options: ['10', '8', '11', '7'], a: 0, exp: 'نو کے بعد دس (10) آتا ہے۔' },
+  { lvl: 32, kid: 'mujtaba', sub: 'ریاضی', mode: 'quiz', pic: '➕', prompt: '25 جمع 15 کتنا ہوتا ہے؟', options: ['40', '35', '45', '50'], a: 0, exp: '25 + 15 = 40۔' },
+  { lvl: 33, kid: 'muhaddis', sub: 'ریاضی', mode: 'quiz', pic: '🍕', prompt: 'کسر (Fraction): آدھا اور آدھا (1/2 + 1/2) مل کر کیا بنتا ہے؟', options: ['1 (پورا)', '2', '1/4', '3/4'], a: 0, exp: 'نصف جمع نصف ایک کے برابر ہوتا ہے۔' },
+  { lvl: 34, kid: 'abbas', sub: 'ریاضی', mode: 'quiz', pic: '📏', prompt: 'اگر ایک مربع کے ایک ضلع کی لمبائی 5 سینٹی میٹر ہو تو اس کا احاطہ (Perimeter) کیا ہوگا؟', options: ['20 سینٹی میٹر', '25 سینٹی میٹر', '15 سینٹی میٹر', '10 سینٹی میٹر'], a: 0, exp: 'احاطہ = 4 ضرب 5 = 20 سینٹی میٹر۔' },
+  { lvl: 35, kid: 'ehtisham', sub: 'فزکس', mode: 'quiz', pic: '🍎', prompt: 'نیوٹن کا دوسرا قانون حرکت (Second Law) کیا ہے؟', options: ['F = ma', 'W = mg', 'P = mv', 'v = fλ'], a: 0, exp: 'فورس برابر ہے ماس ضرب ایکسلریشن (F = ma)۔' },
+
+  // 36 to 40
+  { lvl: 36, kid: 'mustafa', sub: 'English', mode: 'blank', pic: '☀️', prompt: 'Complete word: S [ _ ] N', displayWord: 'S _ N', blankChar: 'U', options: ['U', 'A', 'O', 'I'], exp: 'S - U - N spells Sun.' },
+  { lvl: 37, kid: 'mujtaba', sub: 'English', mode: 'quiz', pic: '📅', prompt: 'How many days are in a single week?', options: ['7', '5', '6', '8'], a: 0, exp: 'There are 7 days in a week.' },
+  { lvl: 38, kid: 'muhaddis', sub: 'English', mode: 'quiz', pic: '🏫', prompt: 'Choose correct preposition: "The book is ___ the table."', options: ['on', 'in', 'at', 'into'], a: 0, exp: 'The book rests "on" the table.' },
+  { lvl: 39, kid: 'abbas', sub: 'English', mode: 'quiz', pic: '🌊', prompt: 'Superlative degree of "Deep":', options: ['Deepest', 'Deeper', 'More deep', 'Deeply'], a: 0, exp: 'Deep, Deeper, Deepest.' },
+  { lvl: 40, kid: 'ehtisham', sub: 'English', mode: 'quiz', pic: '💬', prompt: 'Direct to Indirect: He said, "I am ill." becomes:', options: ['He said that he was ill.', 'He said he is ill.', 'He told he was ill.', 'He says he was ill.'], a: 0, exp: 'Pronoun and tense shift to past tense.' },
+
+  // 41 to 45
+  { lvl: 41, kid: 'mustafa', sub: 'اردو', mode: 'quiz', pic: '🇵🇰', prompt: 'ہمارے پیارے ملک کا کیا نام ہے؟', options: ['پاکستان', 'چین', 'سعودیہ', 'ترکی'], a: 0, exp: 'ہمارے وطن کا نام پاکستان ہے۔' },
+  { lvl: 42, kid: 'mujtaba', sub: 'اردو', mode: 'spot', pic: '🐐', prompt: 'پاکستان کا قومی جانور مارخور تلاش کریں:', correctIndex: 0, choices: [{emoji: '🐐', title: 'مارخور'}, {emoji: '🦁', title: 'شیر'}, {emoji: '🐘', title: 'ہاتھی'}, {emoji: '🐫', title: 'اونٹ'}], exp: 'مارخور پاکستان کا قومی جانور ہے۔' },
+  { lvl: 43, kid: 'muhaddis', sub: 'اردو', mode: 'quiz', pic: '🏔️', prompt: 'دنیا کی دوسری بلند ترین چوٹی K2 کس ملک میں ہے؟', options: ['پاکستان', 'بھارت', 'نیپال', 'جاپان'], a: 0, exp: 'کے ٹو پاکستان کے قراقرم سلسلے میں واقع ہے۔' },
+  { lvl: 44, kid: 'abbas', sub: 'اردو', mode: 'quiz', pic: '📜', prompt: 'تاریخی قراردادِ پاکستان کس سال منظور ہوئی تھی؟', options: ['1940', '1947', '1930', '1956'], a: 0, exp: '23 مارچ 1940 کو لاہور میں قرارداد منظور ہوئی۔' },
+  { lvl: 45, kid: 'ehtisham', sub: 'اردو', mode: 'quiz', pic: '📚', prompt: 'غزل کے آخری شعر کو جس میں شاعر اپنا تخلص لاتا ہے کیا کہتے ہیں؟', options: ['مقطع', 'مطلع', 'ردیف', 'قافیہ'], a: 0, exp: 'آخری شعر کو مقطع کہتے ہیں۔' },
+
+  // 46 to 50
+  { lvl: 46, kid: 'mustafa', sub: 'ریاضی', mode: 'quiz', pic: '🖐️', prompt: 'ایک ہاتھ میں کتنی انگلیاں ہوتی ہیں؟', options: ['5', '4', '10', '6'], a: 0, exp: 'ایک ہاتھ میں 5 انگلیاں ہوتی ہیں۔' },
+  { lvl: 47, kid: 'mujtaba', sub: 'ریاضی', mode: 'quiz', pic: '⏰', prompt: 'ایک گھنٹے میں کتنے منٹ ہوتے ہیں؟', options: ['60', '100', '30', '50'], a: 0, exp: 'ایک گھنٹے میں 60 منٹ ہوتے ہیں۔' },
+  { lvl: 48, kid: 'muhaddis', sub: 'ریاضی', mode: 'quiz', pic: '📐', prompt: 'قائمۃ الزاویہ (Right Angle) کتنے ڈگری کا ہوتا ہے؟', options: ['90 ڈگری', '45 ڈگری', '180 ڈگری', '60 ڈگری'], a: 0, exp: 'قائمۃ الزاویہ عین 90 ڈگری کا ہوتا ہے۔' },
+  { lvl: 49, kid: 'abbas', sub: 'ریاضی', mode: 'quiz', pic: '📦', prompt: 'اگر ایک مستطیل کی لمبائی 6 میٹر اور چوڑائی 4 میٹر ہو تو رقبہ (Area) کیا ہوگا؟', options: ['24 مربع میٹر', '20 مربع میٹر', '10 مربع میٹر', '18 مربع میٹر'], a: 0, exp: 'رقبہ = لمبائی ضرب چوڑائی = 24۔' },
+  { lvl: 50, kid: 'ehtisham', sub: 'فزکس', mode: 'quiz', pic: '🧲', prompt: 'فورس (Force) کی ایس آئی اکائی کیا ہے؟', options: ['نیوٹن (Newton)', 'جول (Joule)', 'پاسکل (Pascal)', 'واٹ (Watt)'], a: 0, exp: 'فورس کی اکائی نیوٹن ہے۔' },
+
+  // 51 to 55
+  { lvl: 51, kid: 'mustafa', sub: 'English', mode: 'match', pic: '🔴 🔵 🟢', prompt: 'Match colors with Urdu names!', pairs: [{left: '🔴 Red', right: 'سرخ'}, {left: '🔵 Blue', right: 'نیلا'}, {left: '🟢 Green', right: 'سبز'}], exp: 'Red سرخ، Blue نیلا، Green سبز۔' },
+  { lvl: 52, kid: 'mujtaba', sub: 'English', mode: 'blank', pic: '🐟', prompt: 'Complete word: F [ _ ] S H', displayWord: 'F _ S H', blankChar: 'I', options: ['I', 'E', 'A', 'O'], exp: 'F - I - S - H spells Fish.' },
+  { lvl: 53, kid: 'muhaddis', sub: 'English', mode: 'quiz', pic: '🌱', prompt: 'Process by which green plants make food:', options: ['Photosynthesis', 'Respiration', 'Digestion', 'Evaporation'], a: 0, exp: 'Plants use Photosynthesis.' },
+  { lvl: 54, kid: 'abbas', sub: 'English', mode: 'quiz', pic: '📖', prompt: 'Identify the Adverb in: "He solved the sum quickly."', options: ['quickly', 'solved', 'sum', 'he'], a: 0, exp: 'Quickly describes the action (Adverb).' },
+  { lvl: 55, kid: 'ehtisham', sub: 'ریاضی', mode: 'quiz', pic: '🔢', prompt: 'اگر دو سیٹس A اور B میں کوئی قدر مشترک نہ ہو تو وہ کون سے سیٹ کہلاتے ہیں؟', options: ['ڈسجوائنٹ سیٹ (Disjoint)', 'اوورلیپنگ سیٹ', 'برابر سیٹ', 'مساوی سیٹ'], a: 0, exp: 'غیر مشترک سیٹس کو ڈسجوائنٹ سیٹ کہتے ہیں۔' },
+
+  // 56 to 60
+  { lvl: 56, kid: 'mustafa', sub: 'اردو', mode: 'blank', pic: '🥛', prompt: 'لفظ مکمل کریں: د و [ _ ] ھ', displayWord: 'د و _ ھ', blankChar: 'د', options: ['د', 'ر', 'س', 'ل'], exp: 'د + و + د + ھ مل کر دودھ بنتا ہے۔' },
+  { lvl: 57, kid: 'mujtaba', sub: 'اردو', mode: 'quiz', pic: '🌸', prompt: 'پاکستان کا قومی پھول کون سا ہے؟', options: ['چمیلی (یاسمین)', 'گلاب', 'سورج مکھی', 'گیندا'], a: 0, exp: 'چمیلی پاکستان کا قومی پھول ہے۔' },
+  { lvl: 58, kid: 'muhaddis', sub: 'اردو', mode: 'match', pic: '📝 📚 🗣️', prompt: 'اسم، فعل اور حرف کی مثالیں ملائیں!', pairs: [{left: 'احمد / کتاب', right: 'اسم'}, {left: 'لکھنا / دوڑنا', right: 'فعل'}, {left: 'پر / تک / سے', right: 'حرف'}], exp: 'احمد اسم، لکھنا فعل، پر حرف ہے۔' },
+  { lvl: 59, kid: 'abbas', sub: 'اردو', mode: 'quiz', pic: '🪐', prompt: 'سائنس: نظامِ شمسی کا سب سے بڑا سیارہ کون سا ہے؟', options: ['مشتری (Jupiter)', 'مریخ (Mars)', 'زمین (Earth)', 'عطارد (Mercury)'], a: 0, exp: 'مشتری نظام شمسی کا سب سے بڑا سیارہ ہے۔' },
+  { lvl: 60, kid: 'ehtisham', sub: 'فزکس', mode: 'quiz', pic: '🔍', prompt: 'وہ لینس جو درمیان سے موٹا اور کناروں سے پتلا ہو کیا کہلاتا ہے؟', options: ['کونویکس لینس (Convex)', 'کونکیو لینس (Concave)', 'پلین لینس', 'سلنڈریکل لینس'], a: 0, exp: 'کنورجنگ لینس کو کونویکس لینس کہتے ہیں۔' },
+
+  // 61 to 65
+  { lvl: 61, kid: 'mustafa', sub: 'ریاضی', mode: 'quiz', pic: '➖', prompt: '5 میں سے 2 نکالیں تو کیا بچے گا؟', options: ['3', '2', '4', '1'], a: 0, exp: '5 منفی 2 برابر ہے 3۔' },
+  { lvl: 62, kid: 'mujtaba', sub: 'ریاضی', mode: 'quiz', pic: '🔢', prompt: 'عدد 48 جفت (Even) ہے یا طاق (Odd)؟', options: ['جفت (Even)', 'طاق (Odd)', 'دونوں', 'کوئی نہیں'], a: 0, exp: 'جس کے آخر میں 8 ہو وہ جفت عدد ہوتا ہے۔' },
+  { lvl: 63, kid: 'muhaddis', sub: 'ریاضی', mode: 'quiz', pic: '📐', prompt: 'ایک دائرے کا مکمل گھماؤ کتنے ڈگری کا ہوتا ہے؟', options: ['360 ڈگری', '180 ڈگری', '90 ڈگری', '270 ڈگری'], a: 0, exp: 'مکمل دائرہ 360 ڈگری کا ہوتا ہے۔' },
+  { lvl: 64, kid: 'abbas', sub: 'ریاضی', mode: 'quiz', pic: '➕', prompt: 'BODMAS اصول کے تحت پہلے کیا حل کیا جاتا ہے؟', options: ['بریکٹ (Brackets)', 'جمع', 'تفریق', 'ضرب'], a: 0, exp: 'سب سے پہلے بریکٹ حل کی جاتی ہے۔' },
+  { lvl: 65, kid: 'ehtisham', sub: 'ریاضی', mode: 'quiz', pic: '🔢', prompt: 'میٹرکس میں قطاروں اور کالموں کی ترتیب کو کیا کہتے ہیں؟', options: ['مرتبہ (Order of Matrix)', 'ڈیٹرمیننٹ', 'انورس', 'ایڈجوائنٹ'], a: 0, exp: 'Order of Matrix قطار اور کالم بتاتا ہے۔' },
+
+  // 66 to 70
+  { lvl: 66, kid: 'mustafa', sub: 'English', mode: 'quiz', pic: '🐮', prompt: 'Which animal gives us milk?', options: ['Cow', 'Lion', 'Dog', 'Cat'], a: 0, exp: 'Cow gives us healthy milk.' },
+  { lvl: 67, kid: 'mujtaba', sub: 'English', mode: 'quiz', pic: '🚲', prompt: 'How many wheels does a bicycle have?', options: ['2', '3', '4', '1'], a: 0, exp: 'A bicycle has two wheels.' },
+  { lvl: 68, kid: 'muhaddis', sub: 'English', mode: 'quiz', pic: '🌍', prompt: 'Gas that humans inhale to live:', options: ['Oxygen', 'Carbon Dioxide', 'Nitrogen', 'Helium'], a: 0, exp: 'Humans breathe in Oxygen.' },
+  { lvl: 69, kid: 'abbas', sub: 'English', mode: 'quiz', pic: '📚', prompt: 'Antonym of "Ancient":', options: ['Modern', 'Old', 'Past', 'Antique'], a: 0, exp: 'Modern is the antonym of Ancient.' },
+  { lvl: 70, kid: 'ehtisham', sub: 'English', mode: 'quiz', pic: '📝', prompt: 'Conditional sentence: "If it rains, we ___ stay home."', options: ['will', 'would', 'had', 'did'], a: 0, exp: 'First conditional takes "will".' },
+
+  // 71 to 75
+  { lvl: 71, kid: 'mustafa', sub: 'اردو', mode: 'quiz', pic: '👂', prompt: 'ہم کانوں سے کیا کام لیتے ہیں؟', options: ['سنتے ہیں', 'دیکھتے ہیں', 'کھاتے ہیں', 'سونگھتے ہیں'], a: 0, exp: 'کان سننے کے کام آتے ہیں۔' },
+  { lvl: 72, kid: 'mujtaba', sub: 'اردو', mode: 'quiz', pic: '🏑', prompt: 'پاکستان کا قومی کھیل کون سا ہے؟', options: ['ہاکی', 'کرکٹ', 'فٹ بال', 'سکواش'], a: 0, exp: 'ہاکی پاکستان کا قومی کھیل ہے۔' },
+  { lvl: 73, kid: 'muhaddis', sub: 'اردو', mode: 'quiz', pic: '🤝', prompt: 'لفظ "سچ" کا متضاد کیا ہے؟', options: ['جھوٹ', 'برائی', 'دھوکہ', 'غصہ'], a: 0, exp: 'سچ کا متضاد جھوٹ ہے۔' },
+  { lvl: 74, kid: 'abbas', sub: 'اردو', mode: 'match', pic: '🫀 🫁 🧠', prompt: 'انسانی اعضاء کو ان کے کام سے جوڑیں!', pairs: [{left: 'دل 🫀', right: 'خون پمپ کرنا'}, {left: 'پھیپھڑے 🫁', right: 'آکسیجن لینا'}, {left: 'دماغ 🧠', right: 'سوچنا اور کنٹرول'}], exp: 'دل خون پمپ کرتا ہے اور پھیپھڑے سانس لیتے ہیں۔' },
+  { lvl: 75, kid: 'ehtisham', sub: 'اردو', mode: 'quiz', pic: '📜', prompt: 'ہمارے قومی شاعر کون ہیں؟', options: ['علامہ محمد اقبال', 'مرزا غالب', 'میر تقی میر', 'فیض احمد فیض'], a: 0, exp: 'علامہ اقبال ہمارے قومی شاعر ہیں۔' },
+
+  // 76 to 80
+  { lvl: 76, kid: 'mustafa', sub: 'ریاضی', mode: 'quiz', pic: '➕', prompt: '4 جمع 4 کتنے ہوتے ہیں؟', options: ['8', '6', '10', '7'], a: 0, exp: '4 + 4 = 8۔' },
+  { lvl: 77, kid: 'mujtaba', sub: 'ریاضی', mode: 'quiz', pic: '✖️', prompt: '5 ضرب 5 کتنا ہوگا؟', options: ['25', '20', '30', '15'], a: 0, exp: 'پانچ پنچے پچیس (25)۔' },
+  { lvl: 78, kid: 'muhaddis', sub: 'ریاضی', mode: 'quiz', pic: '📐', prompt: 'ایک کلومیٹر میں کتنے میٹر ہوتے ہیں؟', options: ['1000 میٹر', '100 میٹر', '500 میٹر', '10 میٹر'], a: 0, exp: '1 کلومیٹر برابر ہے 1000 میٹر۔' },
+  { lvl: 79, kid: 'abbas', sub: 'ریاضی', mode: 'quiz', pic: '🔢', prompt: '12 اور 18 کا عادِ اعظم (HCF) کیا ہوگا؟', options: ['6', '3', '2', '12'], a: 0, exp: 'دونوں کو تقسیم کرنے والا سب سے بڑا عدد 6 ہے۔' },
+  { lvl: 80, kid: 'ehtisham', sub: 'فزکس', mode: 'quiz', pic: '⚙️', prompt: 'ورک (Work) کی حسابی تعریف کیا ہے؟', options: ['W = F · d', 'W = mgh', 'W = P / t', 'W = F / a'], a: 0, exp: 'ورک برابر ہے فورس ضرب فاصلہ (W = F · d)۔' },
+
+  // 81 to 85
+  { lvl: 81, kid: 'mustafa', sub: 'English', mode: 'blank', pic: '📖', prompt: 'Complete word: B [ _ ] O K', displayWord: 'B _ O K', blankChar: 'O', options: ['O', 'A', 'U', 'E'], exp: 'B - O - O - K spells Book.' },
+  { lvl: 82, kid: 'mujtaba', sub: 'English', mode: 'quiz', pic: '🐢', prompt: 'Opposite of "Fast":', options: ['Slow', 'Quick', 'Rapid', 'Late'], a: 0, exp: 'Slow is opposite to Fast.' },
+  { lvl: 83, kid: 'muhaddis', sub: 'English', mode: 'quiz', pic: '✈️', prompt: 'A person who flies an airplane is called a:', options: ['Pilot', 'Driver', 'Captain', 'Doctor'], a: 0, exp: 'An airplane is flown by a Pilot.' },
+  { lvl: 84, kid: 'abbas', sub: 'English', mode: 'quiz', pic: '🧍', prompt: 'Identify the Pronoun in: "She loves reading books."', options: ['She', 'loves', 'reading', 'books'], a: 0, exp: 'She replaces a noun, so it is a Pronoun.' },
+  { lvl: 85, kid: 'ehtisham', sub: 'فزکس', mode: 'quiz', pic: '🔊', prompt: 'ہوا میں آواز کی اوسط رفتار تقریباً کتنی ہوتی ہے؟', options: ['340 میٹر فی سیکنڈ', '3000 میٹر فی سیکنڈ', '100 میٹر فی سیکنڈ', 'روشنی کی رفتار کے برابر'], a: 0, exp: 'آواز کی رفتار ہوا میں تقریباً 340 m/s ہوتی ہے۔' },
+
+  // 86 to 90
+  { lvl: 86, kid: 'mustafa', sub: 'اردو', mode: 'quiz', pic: '👀', prompt: 'ہم آنکھوں سے کیا کام لیتے ہیں؟', options: ['دیکھتے ہیں', 'سنتے ہیں', 'کھاتے ہیں', 'چلتے ہیں'], a: 0, exp: 'آنکھیں دیکھنے کے کام آتی ہیں۔' },
+  { lvl: 87, kid: 'mujtaba', sub: 'اردو', mode: 'quiz', pic: '📅', prompt: 'ایک سال میں کتنے مہینے ہوتے ہیں؟', options: ['12', '10', '7', '14'], a: 0, exp: 'ایک سال میں بارہ (12) مہینے ہوتے ہیں۔' },
+  { lvl: 88, kid: 'muhaddis', sub: 'اردو', mode: 'quiz', pic: '🍯', prompt: 'شہد کی مکھی سے ہمیں کیا مفید چیز ملتی ہے؟', options: ['شہد', 'دودھ', 'پھل', 'پانی'], a: 0, exp: 'شہد کی مکھی میٹھا شہد بناتی ہے۔' },
+  { lvl: 89, kid: 'abbas', sub: 'اردو', mode: 'quiz', pic: '📜', prompt: 'پاکستان کس تاریخ کو معرضِ وجود میں آیا؟', options: ['14 اگست 1947', '23 مارچ 1940', '6 ستمبر 1965', '25 دسمبر 1876'], a: 0, exp: '14 اگست 1947 یومِ آزادی ہے۔' },
+  { lvl: 90, kid: 'ehtisham', sub: 'اردو', mode: 'quiz', pic: '📚', prompt: 'بانگِ درا اور بالِ جبریل کس کی تصانیف ہیں؟', options: ['علامہ محمد اقبال', 'الطاف حسین حالی', 'سر سید احمد خان', 'شبلی نعمانی'], a: 0, exp: 'یہ دونوں مشہور کتب علامہ اقبال کی ہیں۔' },
+
+  // 91 to 95
+  { lvl: 91, kid: 'mustafa', sub: 'ریاضی', mode: 'quiz', pic: '🔢', prompt: 'گنتی: 6 کے بعد کیا آتا ہے؟', options: ['7', '5', '8', '9'], a: 0, exp: 'چھ کے بعد سات (7) آتا ہے۔' },
+  { lvl: 92, kid: 'mujtaba', sub: 'ریاضی', mode: 'quiz', pic: '➖', prompt: '50 میں سے 20 نکالیں تو کیا بچے گا؟', options: ['30', '25', '35', '40'], a: 0, exp: '50 - 20 = 30۔' },
+  { lvl: 93, kid: 'muhaddis', sub: 'ریاضی', mode: 'quiz', pic: '⚖️', prompt: 'ایک کلوگرام میں کتنے گرام ہوتے ہیں؟', options: ['1000 گرام', '100 گرام', '500 گرام', '10 گرام'], a: 0, exp: '1 کلوگرام میں 1000 گرام ہوتے ہیں۔' },
+  { lvl: 94, kid: 'abbas', sub: 'ریاضی', mode: 'quiz', pic: '🔢', prompt: '4 اور 6 کا ذواضعاف اقل (LCM) کیا ہوگا؟', options: ['12', '24', '6', '18'], a: 0, exp: 'سب سے چھوٹا مشترک ملٹیپل 12 ہے۔' },
+  { lvl: 95, kid: 'ehtisham', sub: 'فزکس', mode: 'quiz', pic: '💡', prompt: 'پاور (Power) کی بنیادی ایس آئی اکائی کیا ہے؟', options: ['واٹ (Watt)', 'جول (Joule)', 'نیوٹن (Newton)', 'کولمب (Coulomb)'], a: 0, exp: 'پاور کی اکائی واٹ (Watt) ہے۔' },
+
+  // 96 to 100
+  { lvl: 96, kid: 'mustafa', sub: 'English', mode: 'quiz', pic: '🦆', prompt: 'Which bird loves to swim in water?', options: ['Duck', 'Sparrow', 'Crow', 'Parrot'], a: 0, exp: 'Ducks swim in water.' },
+  { lvl: 97, kid: 'mujtaba', sub: 'English', mode: 'blank', pic: '🚪', prompt: 'Complete word: D [ _ ] O R', displayWord: 'D _ O R', blankChar: 'O', options: ['O', 'A', 'E', 'I'], exp: 'D - O - O - R spells Door.' },
+  { lvl: 98, kid: 'muhaddis', sub: 'English', mode: 'quiz', pic: '🐝', prompt: 'Where do honeybees live?', options: ['Beehive', 'Nest', 'Den', 'Burrow'], a: 0, exp: 'Bees build a Beehive.' },
+  { lvl: 99, kid: 'abbas', sub: 'English', mode: 'quiz', pic: '🧠', prompt: 'An organ that controls all body functions is the:', options: ['Brain', 'Stomach', 'Liver', 'Bone'], a: 0, exp: 'Brain controls the body.' },
+  { lvl: 100, kid: 'ehtisham', sub: 'ریاضی', mode: 'quiz', pic: '📐', prompt: 'فیثاغورث کا کلیہ (Pythagoras Theorem) کیا ہے؟', options: ['c² = a² + b²', 'a + b = c', 'E = mc²', 'A = πr²'], a: 0, exp: 'وتر کا مربع = قاعدہ مربع + عمود مربع (c² = a² + b²)۔' }
+];
+
+/* ==========================================================================
+   Level Running & Scoring Logic (10 Marks, -2 Deduction, Failed on 0)
+   ========================================================================== */
+
+let currentLevelData = null;
+let currentPoolMarks = 10;
+let isLevelOver = false;
+
+function showScreen(screenId) {
+  playSound('tap');
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  window.speechSynthesis.cancel();
+}
+
+function startDirectPlay() {
+  loadLevel(gameState.activeLevel || 1);
+}
+
+function loadLevel(lvlNum) {
+  currentLevelData = raw100Levels.find(item => item.lvl === lvlNum) || raw100Levels[0];
+  gameState.activeLevel = currentLevelData.lvl;
+  currentPoolMarks = 10;
+  isLevelOver = false;
+
+  const kid = gameState.kids[currentLevelData.kid];
+
+  // Set Header & Turn Info (Visually displays name, but voice will NOT say the name)
+  document.getElementById('active-player-tag').innerHTML = `<span>${kid.avatar}</span> ${kid.name} (${kid.grade})`;
+  document.getElementById('level-display-tag').textContent = `لیول ${currentLevelData.lvl} / 100`;
+  document.getElementById('q-subject-tag').textContent = `مضمون: ${currentLevelData.sub}`;
+  updatePoolMarksDisplay();
+
+  document.getElementById('q-emoji-display').textContent = currentLevelData.pic;
+  document.getElementById('q-text-display').textContent = currentLevelData.prompt;
+
+  // Render appropriate interactive UI mode
+  const slot = document.getElementById('game-dynamic-slot');
+  slot.innerHTML = '';
+
+  if (currentLevelData.mode === 'match') {
+    renderMatchGame(slot, currentLevelData);
+  } else if (currentLevelData.mode === 'blank') {
+    renderBlankGame(slot, currentLevelData);
+  } else if (currentLevelData.mode === 'spot') {
+    renderSpotGame(slot, currentLevelData);
+  } else {
+    renderQuizGame(slot, currentLevelData);
+  }
+
+  showScreen('screen-game');
+
+  // Trigger speech (Speaks ONLY the question prompt, NO names)
+  setTimeout(() => {
+    speakCurrentQuestion();
+  }, 350);
+}
+
+function updatePoolMarksDisplay() {
+  document.getElementById('level-pool-tag').textContent = `${currentPoolMarks} / 10 🪙`;
+}
+
+function speakCurrentQuestion() {
+  if (!currentLevelData) return;
+  // Speak ONLY question, not student name
+  const lang = currentLevelData.sub === 'English' ? 'en' : 'ur';
+  speakCleanVoice(currentLevelData.prompt, lang);
+}
+
+// 1. MATCH GAME
+function renderMatchGame(container, data) {
+  const wrap = document.createElement('div');
+  wrap.className = 'match-wrap';
+  const leftCol = document.createElement('div');
+  leftCol.className = 'match-col';
+  const rightCol = document.createElement('div');
+  rightCol.className = 'match-col';
+
+  let selectedLeft = null;
+  let matchesCount = 0;
+  const total = data.pairs.length;
+
+  const shuffledRight = [...data.pairs].sort(() => Math.random() - 0.5);
+
+  data.pairs.forEach((pair, idx) => {
+    const lItem = document.createElement('div');
+    lItem.className = 'match-card';
+    lItem.textContent = pair.left;
+    lItem.dataset.id = idx;
+
+    lItem.onclick = () => {
+      if (isLevelOver || lItem.classList.contains('matched')) return;
+      playSound('tap');
+      leftCol.querySelectorAll('.match-card').forEach(x => x.classList.remove('selected'));
+      lItem.classList.add('selected');
+      selectedLeft = lItem;
+      speakCleanVoice(pair.left, data.sub === 'English' ? 'en' : 'ur');
+    };
+    leftCol.appendChild(lItem);
+  });
+
+  shuffledRight.forEach(pair => {
+    const rItem = document.createElement('div');
+    rItem.className = 'match-card';
+    rItem.textContent = pair.right;
+    rItem.dataset.id = data.pairs.indexOf(pair);
+
+    rItem.onclick = () => {
+      if (isLevelOver || rItem.classList.contains('matched')) return;
+      if (!selectedLeft) {
+        playSound('loss');
+        speakCleanVoice("پہلے بائیں طرف سے ایک کارڈ چنیں!", "ur");
+        return;
+      }
+
+      if (selectedLeft.dataset.id === rItem.dataset.id) {
+        playSound('gain');
+        selectedLeft.classList.remove('selected');
+        selectedLeft.classList.add('matched');
+        rItem.classList.add('matched');
+        selectedLeft = null;
+        matchesCount++;
+
+        if (matchesCount === total) {
+          handleSuccessWin();
+        }
+      } else {
+        rItem.style.borderColor = '#ef4444';
+        setTimeout(() => { rItem.style.borderColor = '#94a3b8'; }, 400);
+        handleMistakeDeduction();
+      }
+    };
+    rightCol.appendChild(rItem);
+  });
+
+  wrap.appendChild(leftCol);
+  wrap.appendChild(rightCol);
+  container.appendChild(wrap);
+}
+
+// 2. BLANK GAME
+function renderBlankGame(container, data) {
+  const box = document.createElement('div');
+  box.className = 'blank-box';
+  box.innerHTML = data.displayWord.replace('_', '<span style="color:#2563eb; border-bottom:4px solid #2563eb;">?</span>');
+  container.appendChild(box);
+
+  const rack = document.createElement('div');
+  rack.className = 'tiles-box';
+
+  data.options.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'tile-btn';
+    btn.textContent = c;
+    btn.onclick = () => {
+      if (isLevelOver) return;
+      if (c === data.blankChar) {
+        playSound('gain');
+        box.innerHTML = data.displayWord.replace('_', `<span style="color:#10b981;">${c}</span>`);
+        handleSuccessWin();
+      } else {
+        btn.style.borderColor = '#ef4444';
+        handleMistakeDeduction();
+      }
+    };
+    rack.appendChild(btn);
+  });
+  container.appendChild(rack);
+}
+
+// 3. SPOT GAME
+function renderSpotGame(container, data) {
+  const grid = document.createElement('div');
+  grid.className = 'spot-matrix';
+
+  data.choices.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'spot-item';
+    card.innerHTML = `<span style="font-size:3.2rem;">${item.emoji}</span><span style="font-size:1.1rem; font-weight:900; margin-top:3px;">${item.title}</span>`;
+
+    card.onclick = () => {
+      if (isLevelOver) return;
+      if (index === data.correctIndex) {
+        playSound('gain');
+        card.style.borderColor = '#10b981';
+        card.style.background = '#dcfce7';
+        handleSuccessWin();
+      } else {
+        card.style.borderColor = '#ef4444';
+        handleMistakeDeduction();
+      }
+    };
+    grid.appendChild(card);
+  });
+  container.appendChild(grid);
+}
+
+// 4. QUIZ GAME
+function renderQuizGame(container, data) {
+  const grid = document.createElement('div');
+  grid.className = 'quiz-options';
+
+  data.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-card';
+    btn.textContent = opt;
+
+    btn.onclick = () => {
+      if (isLevelOver) return;
+      if (idx === data.a) {
+        playSound('gain');
+        btn.style.background = '#10b981';
+        btn.style.color = '#fff';
+        handleSuccessWin();
+      } else {
+        btn.style.background = '#ef4444';
+        btn.style.color = '#fff';
+        handleMistakeDeduction();
+      }
+    };
+    grid.appendChild(btn);
+  });
+  container.appendChild(grid);
+}
+
+/* ==========================================================================
+   Mistake Deduction (-2) & Failure (Marks = 0)
+   ========================================================================== */
+
+function triggerToast(msg, isReward) {
+  const t = document.getElementById('score-toast');
+  t.textContent = msg;
+  t.className = `score-toast ${isReward ? 'reward' : 'penalty'}`;
+  setTimeout(() => {
+    t.className = 'score-toast';
+  }, 850);
+}
+
+function handleMistakeDeduction() {
+  playSound('loss');
+  currentPoolMarks -= 2;
+
+  if (currentPoolMarks < 0) currentPoolMarks = 0;
+  updatePoolMarksDisplay();
+
+  triggerToast("-2 نمبر ❌", false);
+
+  if (currentPoolMarks <= 0) {
+    isLevelOver = true;
+    playSound('fail');
+    setTimeout(() => {
+      showFailureModal();
+    }, 500);
+  } else {
+    // Speak only score status, not names
+    speakCleanVoice(`غلط جواب! 2 نمبر کٹ گئے۔ اب ${currentPoolMarks} نمبر باقی ہیں!`, 'ur');
+  }
+}
+
+function handleSuccessWin() {
+  isLevelOver = true;
+  playSound('fanfare');
+  startConfettiAnim();
+
+  const kid = gameState.kids[currentLevelData.kid];
+  kid.score += currentPoolMarks;
+
+  if (currentLevelData.lvl >= gameState.highestUnlockedLevel && gameState.highestUnlockedLevel < 100) {
+    gameState.highestUnlockedLevel = currentLevelData.lvl + 1;
+  }
+  saveState();
+
+  triggerToast(`+${currentPoolMarks} نمبر 🎉`, true);
+
+  setTimeout(() => {
+    showSuccessModal(kid, currentPoolMarks);
+  }, 650);
+}
+
+function showSuccessModal(kid, marksWon) {
+  const modal = document.getElementById('feedback-modal');
+  document.getElementById('modal-icon').textContent = "🌟🎉";
+  document.getElementById('modal-title').textContent = "بہت خوب! درست جواب!";
+  document.getElementById('modal-title').style.color = '#047857';
+  document.getElementById('modal-msg').innerHTML = `حاصل کردہ نمبر: <strong style="color:#b45309; font-size:1.35rem;">+${marksWon}</strong><br><span style="font-size:0.95rem; color:#475569;">${currentLevelData.exp}</span>`;
+
+  const btn = document.getElementById('modal-action-btn');
+  btn.textContent = currentLevelData.lvl < 100 ? "اگلا لیول ➡" : "تمام 100 لیولز مکمل! 🏆";
+  btn.className = "kid-btn btn-green";
+  btn.onclick = () => {
+    modal.classList.remove('show');
+    stopConfettiAnim();
+    if (currentLevelData.lvl < 100) {
+      loadLevel(currentLevelData.lvl + 1);
+    } else {
+      showScreen('screen-scoreboard');
+    }
+  };
+
+  modal.classList.add('show');
+  // Speaks only the explanation, NO name
+  const lang = currentLevelData.sub === 'English' ? 'en' : 'ur';
+  speakCleanVoice(`درست جواب! ${currentLevelData.exp}`, lang);
+}
+
+function showFailureModal() {
+  const modal = document.getElementById('feedback-modal');
+  document.getElementById('modal-icon').textContent = "💔😢";
+  document.getElementById('modal-title').textContent = "لیول فیل ہو گیا!";
+  document.getElementById('modal-title').style.color = '#dc2626';
+  document.getElementById('modal-msg').innerHTML = `تمام نمبرز ختم ہو کر 0 ہو گئے۔<br><span style="font-size:0.95rem; color:#475569;">دوبارہ کوشش کریں اور پورے 10 نمبر حاصل کریں!</span>`;
+
+  const btn = document.getElementById('modal-action-btn');
+  btn.textContent = "دوبارہ کھیلیں (Try Again) 🔄";
+  btn.className = "kid-btn btn-orange";
+  btn.onclick = () => {
+    modal.classList.remove('show');
+    loadLevel(currentLevelData.lvl);
+  };
+
+  modal.classList.add('show');
+  speakCleanVoice("تمام نمبر ختم ہو گئے۔ لیول فیل ہو گیا۔ دوبارہ کوشش کریں!", "ur");
+}
+
+/* ==========================================================================
+   100 Levels Map & Scoreboard
+   ========================================================================== */
+
+function renderLevelsMap() {
+  const container = document.getElementById('levels-map-grid');
+  container.innerHTML = '';
+
+  raw100Levels.forEach(l => {
+    const kid = gameState.kids[l.kid];
+    const item = document.createElement('div');
+    item.style.aspectRatio = '1';
+    item.style.borderRadius = '14px';
+    item.style.border = '2px solid #cbd5e1';
+    item.style.display = 'flex';
+    item.style.flexDirection = 'column';
+    item.style.alignItems = 'center';
+    item.style.justifyContent = 'center';
+    item.style.fontWeight = '900';
+    item.style.fontSize = '0.95rem';
+    item.style.cursor = 'pointer';
+
+    if (l.lvl < gameState.highestUnlockedLevel) {
+      item.style.background = '#fef3c7';
+      item.style.borderColor = '#f59e0b';
+      item.innerHTML = `${l.lvl}<span style="font-size:0.6rem;">${kid.avatar}</span>`;
+      item.onclick = () => loadLevel(l.lvl);
+    } else if (l.lvl === gameState.highestUnlockedLevel) {
+      item.style.background = '#dcfce7';
+      item.style.borderColor = '#10b981';
+      item.innerHTML = `${l.lvl}<span style="font-size:0.6rem;">🔓</span>`;
+      item.onclick = () => loadLevel(l.lvl);
+    } else {
+      item.style.background = '#e2e8f0';
+      item.style.opacity = '0.45';
+      item.innerHTML = `${l.lvl}<span style="font-size:0.6rem;">🔒</span>`;
+      item.onclick = () => {
+        playSound('loss');
+        speakCleanVoice("یہ لیول ابھی بند ہے!", "ur");
+      };
+    }
+    container.appendChild(item);
+  });
+}
+
+function renderScoreboard() {
+  const container = document.getElementById('scoreboard-list');
+  container.innerHTML = '';
+
+  const sorted = Object.values(gameState.kids).sort((a,b) => b.score - a.score);
+
+  sorted.forEach((kid, idx) => {
+    const card = document.createElement('div');
+    card.style.background = '#f8fafc';
+    card.style.border = idx === 0 ? '3px solid #f59e0b' : '2px solid #e2e8f0';
+    card.style.borderRadius = '16px';
+    card.style.padding = '10px 14px';
+    card.style.display = 'flex';
+    card.style.justifyContent = 'space-between';
+    card.style.alignItems = 'center';
+
+    card.innerHTML = `
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-size:2.2rem;">${kid.avatar}</span>
+        <div style="text-align:right;">
+          <h4 style="font-size:1.15rem; font-weight:900; color:#1e293b;">${kid.name}</h4>
+          <span style="font-size:0.85rem; font-weight:800; color:#059669;">${kid.grade}</span>
+        </div>
+      </div>
+      <div style="text-align:left;">
+        <div style="font-size:1.45rem; font-weight:900; color:#b45309;">${kid.score} نمبر</div>
+        <span style="font-size:0.8rem; color:#64748b;">${idx === 0 ? '🥇 پہلی پوزیشن' : 'کوشش جاری رکھیں'}</span>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+const origShowScreen = showScreen;
+showScreen = function(id) {
+  if (id === 'screen-levels-map') renderLevelsMap();
+  if (id === 'screen-scoreboard') renderScoreboard();
+  origShowScreen(id);
+};
+
+/* ==========================================================================
+   Confetti Fireworks Animation
+   ========================================================================== */
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let animId = null;
+
+function fitCanvas() {
+  canvas.width = canvas.parentElement.clientWidth;
+  canvas.height = canvas.parentElement.clientHeight;
+}
+window.addEventListener('resize', fitCanvas);
+
+function startConfettiAnim() {
+  fitCanvas();
+  particles = Array.from({ length: 42 }).map(() => ({
+    x: Math.random() * canvas.width,
+    y: -10,
+    r: Math.random() * 6 + 4,
+    color: ['#10b981', '#f59e0b', '#3b82f6', '#ef4444', '#8b5cf6'][Math.floor(Math.random() * 5)],
+    vx: (Math.random() - 0.5) * 4,
+    vy: Math.random() * 4 + 3
+  }));
+
+  function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+    animId = requestAnimationFrame(loop);
+  }
+  loop();
+}
+
+function stopConfettiAnim() {
+  if (animId) cancelAnimationFrame(animId);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// Initial Boot
+window.addEventListener('load', () => {
+  saveState();
+});
+</script>
+
+</body>
+</html>
